@@ -28,7 +28,7 @@ sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mk
 cmake -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
 make install 2>&1 | indent
 
-export PATH=$PATH\:$1/bin:$1/sbin
+export PATH=$PATH\:$1/bin\:$1/sbin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\:$1/lib
 echo "---> Set PATH variable"
 echo $PATH
