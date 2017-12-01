@@ -32,5 +32,6 @@ cat > ${HOME}/.profile.d/mqtt.sh << EOF
 export MQTT_HOME=$1/bin
 export LD_LIBRARY_PATH=$1/lib:$LD_LIBRARY_PATH
 EOF
+export MOSQUITTO_HOME=$1/sbin
 echo "-----> Contents of .profile.d:"
 ls -C ${HOME}/.profile.d | indent
