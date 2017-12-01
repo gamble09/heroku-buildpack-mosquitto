@@ -13,8 +13,7 @@ if [ -f $1/.apt/usr/include/x86_64-linux-gnu/ares_build.h ]; then
 fi
 
 #Download and install libwebsockets
-wget http://git.libwebsockets.org/cgi-bin/cgit/libwebsockets/snapshot/libwebsockets-1.4-chrome43-firefox-36.tar.gz
-tar --strip-components=1 -xzvf libwebsockets-1.4-chrome43-firefox-36.tar.gz
+wget https://github.com/warmcat/libwebsockets.git
 cmake .
 make
 make install
