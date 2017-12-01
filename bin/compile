@@ -14,11 +14,13 @@ fi
 
 #Download and install libwebsockets
 wget https://github.com/warmcat/libwebsockets.git
+cd libwebsockets
 cmake .
 make
 make install
 
 # Download and install mosquitto
+cd $1
 wget http://mosquitto.org/files/source/mosquitto-1.4.14.tar.gz > /dev/null 2>&1
 tar zxf mosquitto-1.4.14.tar.gz
 cd mosquitto-1.4.14/
@@ -28,6 +30,8 @@ make install 2>&1 | indent
 
 export PATH=$PATH\:$1/bin:$1/sbin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\:$1/lib
+echo "---> Set PATH variable"
+echo $PATH
 
 echo "-----> Setting MQTT_HOME environment variable"
 cd $cwd
