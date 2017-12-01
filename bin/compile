@@ -12,15 +12,7 @@ if [ -f $1/.apt/usr/include/x86_64-linux-gnu/ares_build.h ]; then
     cp $1/.apt/usr/include/x86_64-linux-gnu/ares_build.h $1/.apt/usr/include/
 fi
 
-#Download and install libwebsockets
-wget https://github.com/warmcat/libwebsockets.git
-cd libwebsockets
-cmake .
-make
-make install
-
 # Download and install mosquitto
-cd $1
 wget http://mosquitto.org/files/source/mosquitto-1.4.14.tar.gz > /dev/null 2>&1
 tar zxf mosquitto-1.4.14.tar.gz
 cd mosquitto-1.4.14/
