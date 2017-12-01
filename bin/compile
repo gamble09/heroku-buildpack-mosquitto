@@ -12,10 +12,18 @@ if [ -f $1/.apt/usr/include/x86_64-linux-gnu/ares_build.h ]; then
     cp $1/.apt/usr/include/x86_64-linux-gnu/ares_build.h $1/.apt/usr/include/
 fi
 
+#Download and install libwebsockets
+wget http://git.libwebsockets.org/cgi-bin/cgit/libwebsockets/snapshot/libwebsockets-1.4-chrome43-firefox-36.tar.gz
+tar --strip-components=1 -xzvf libwebsockets-1.4-chrome43-firefox-36.tar.gz
+cmake .
+make
+make install
+
 # Download and install mosquitto
 wget http://mosquitto.org/files/source/mosquitto-1.4.14.tar.gz > /dev/null 2>&1
 tar zxf mosquitto-1.4.14.tar.gz
 cd mosquitto-1.4.14/
+sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mk
 cmake -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
 make install 2>&1 | indent
 
