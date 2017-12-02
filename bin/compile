@@ -26,6 +26,8 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\:$1/lib
 echo "---> Set PATH variable"
 echo $PATH
 
+export MQTT_C_CLIENT_TRACE=ON
+
 echo "-----> Setting MQTT_HOME environment variable"
 cd $cwd
 cat > ${HOME}/.profile.d/mqtt.sh << EOF
