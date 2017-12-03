@@ -21,11 +21,19 @@ sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mke
 cmake -DWITH_WEBSOCKETS=ON -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
 make install 2>&1 | indent
 
+export MOSQUITTO_HOME=$1/mosquitto-1.4.14
 export PATH=$PATH\:$1/bin\:$1/sbin
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\:$1/lib
 echo "---> Set PATH variable"
 echo $PATH
 
+cd $1
+wget https://github.com/jpmens/mosquitto-auth-plug.git > /dev/null 2>&1
+cd mosquitto-auth-plug
+cp config.mk.in config.mk
+sed -ie "s/BACKEND_HTTP ?= no/BACKEND_HTTP ?= yes/" config.mk
+sed -ie "s/MOSQUITTO_SRC =\$/MOSQUITTO_SRC = \\$1\/mosquitto-1.4.14/" config.mk
+make
 export MQTT_C_CLIENT_TRACE=ON
 
 echo "-----> Setting MQTT_HOME environment variable"
@@ -34,6 +42,6 @@ cat > ${HOME}/.profile.d/mqtt.sh << EOF
 export MQTT_HOME=$1/bin
 export LD_LIBRARY_PATH=$1/lib:$LD_LIBRARY_PATH
 EOF
-export MOSQUITTO_HOME=$1/sbin
+
 echo "-----> Contents of .profile.d:"
 ls -C ${HOME}/.profile.d | indent
