@@ -41,10 +41,11 @@ export MQTT_C_CLIENT_TRACE=ON
 
 echo "-----> Setting MQTT_HOME environment variable"
 cd $cwd
-cat > ${HOME}/startup.conf << EOF
+cat <<EOF >$BUILD_DIR/startup.conf
 protocol websockets
 auth_plugin $HOME/mosquitto-auth-plug/auth-plug.so
 EOF
+
 
 echo "-->Adding Plugin Path to Config"
 echo "auth_plugin $HOME/mosquitto-auth-plug/auth-plug.so" >> $HOME/websockets.conf
