@@ -28,7 +28,7 @@ echo "---> Set PATH variable"
 echo $PATH
 
 cd $1
-MOSQUITTO_HOME_ESC=$(sed -e 's/\//\\\//g' <<< "$MOSQUITTO_HOME")
+MOSQUITTO_HOME_ESC=$(echo $MOSQUITTO_HOME | sed -e 's/\//\\\//g')
 git clone https://github.com/jpmens/mosquitto-auth-plug.git > /dev/null 2>&1
 cd mosquitto-auth-plug
 cp config.mk.in config.mk
