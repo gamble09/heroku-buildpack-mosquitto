@@ -28,7 +28,7 @@ echo "---> Set PATH variable"
 echo $PATH
 
 cd $1
-wget https://github.com/jpmens/mosquitto-auth-plug.git > /dev/null 2>&1
+git clone https://github.com/jpmens/mosquitto-auth-plug.git > /dev/null 2>&1
 cd mosquitto-auth-plug
 cp config.mk.in config.mk
 sed -ie "s/BACKEND_HTTP ?= no/BACKEND_HTTP ?= yes/" config.mk
