@@ -18,6 +18,8 @@ tar zxf mosquitto-1.4.14.tar.gz
 cd mosquitto-1.4.14/
 sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mk
 sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mke
+sed -ie "s/\-lwebsockets/\-lwebsockets \-lev \-luv/" config.mk
+sed -ie "s/\-lwebsockets/\-lwebsockets \-lev \-luv/" config.mke
 # Generate Makefile with appropriate options
 cmake -DWITH_WEBSOCKETS=ON -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
 make LDFLAGS="-lssl -lcrypto -lev -luv" VERBOSE=1 install 2>&1 | indent
