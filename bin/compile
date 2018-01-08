@@ -19,7 +19,7 @@ cd libwebsockets
 mkdir build
 cd build
 cmake ..
-make install
+sudo make install
 ldconfig
 cd $cwd
 
