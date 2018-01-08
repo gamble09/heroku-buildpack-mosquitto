@@ -14,7 +14,7 @@ fi
 
 
 #Lib Websockets
-wget http://git.libwebsockets.org/cgi-bin/cgit/libwebsockets/snapshot/libwebsockets-1.4-chrome43-firefox-36.tar.gz
+wget https://libwebsockets.org/git/libwebsockets/snapshot/libwebsockets-1.4-chrome43-firefox-36.tar.gz
 tar zxvf libwebsockets-1.4-chrome43-firefox-36.tar.gz
 cd libwebsockets-1.4-chrome43-firefox-36
 mkdir build
