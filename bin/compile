@@ -20,7 +20,7 @@ cd libwebsockets-1.4-chrome43-firefox-36
 mkdir build
 cd build
 cmake ..
-make DESTDIR=$1/lib install
+make install
 export LD_LIBRARY_PATH=$LD_LIBRARY_PATH\:$1/lib
 export LIBWEBSOCKETS_HOME=$1/libwebsockets-1.4-chrome43-firefox-36
 ldconfig
@@ -35,7 +35,7 @@ sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mk
 sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mke
 # Generate Makefile with appropriate options
 cmake -DWITH_WEBSOCKETS=ON -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
-make CFLAGS="-I$1/lib/usr/local/lib" install 2>&1 | indent
+make CFLAGS="-I$1/lib/usr/local/lib"  install 2>&1 | indent
 
 export MOSQUITTO_HOME=$1/mosquitto-1.4.14
 export PATH=$PATH\:$1/bin\:$1/sbin
