@@ -20,7 +20,7 @@ sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mk
 sed -ie "s/WITH_WEBSOCKETS:=no/WITH_WEBSOCKETS:=yes/" config.mke
 # Generate Makefile with appropriate options
 cmake -DWITH_WEBSOCKETS=ON -DARES_HEADER=$1/.apt/usr/include -DCMAKE_INSTALL_PREFIX=$1 . | indent
-make LDFLAGS="-lssl -lcrypto" install 2>&1 | indent
+make LDFLAGS="-lssl -lcrypto -lev -luv" install 2>&1 | indent
 
 export MOSQUITTO_HOME=$1/mosquitto-1.4.14
 export PATH=$PATH\:$1/bin\:$1/sbin
