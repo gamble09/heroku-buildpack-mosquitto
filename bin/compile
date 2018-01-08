@@ -20,7 +20,7 @@ cd libwebsockets-1.4-chrome43-firefox-36
 mkdir build
 cd build
 cmake ..
-make install
+make DESTDIR=$1/lib install
 ldconfig
 cd
 cd $cwd
